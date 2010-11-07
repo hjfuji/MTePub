@@ -1,0 +1,50 @@
+</ul>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var progress = getByID("progress-bar");
+if (progress) {
+    progress.style.display = "none";
+}
+/* ]]> */
+</script>
+
+<mt:if name="error">
+    <mt:var name="class" value="error">
+<mt:else>
+    <mt:var name="class" value="success">
+</mt:if>
+
+<mtapp:statusmsg
+    id="saved"
+    class="$class">
+    <mt:var name="msg">
+</mtapp:statusmsg>
+
+<mt:unless name="error">
+<form name="file_download" id="file_download" method="POST" action="<mt:var name="script_url">">
+    <input type="hidden" name="__mode" value="fjep_download_epub" />
+    <input type="hidden" name="magic_token" value="<mt:var name="magic_token">" />
+    <input type="hidden" name="filename" value="<mt:var name="filename" escape="html">" />
+</form>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var timer;
+
+function submit_form() {
+    window.clearTimeout(timer);
+    var f = document['file_download'];
+    if (f) {
+        f.submit();
+    }
+}
+
+jQuery(function() {
+    timer = window.setTimeout("submit_form()", 3000);
+});
+/* ]]> */
+</script>
+</mt:unless>
+
+<mt:include name="include/footer.tmpl">

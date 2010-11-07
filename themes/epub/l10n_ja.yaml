@@ -1,0 +1,14 @@
+# theme.yaml
+Theme for create EPUB document.: EPUB出力用のテーマです。
+
+# names of index templates
+Main Index: メインページ
+Table of contents: 目次
+Stylesheet: スタイルシート
+
+# names of archive templates
+Entry: ブログ記事
+Category Entry Listing: カテゴリ別ブログ記事リスト
+
+# toc.mtml
+Cover: 表紙

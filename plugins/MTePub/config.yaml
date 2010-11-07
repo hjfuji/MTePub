@@ -1,0 +1,52 @@
+name: MTePub
+id: MTePub
+author_name: <__trans phrase="Hajime Fujimoto">
+author_link: http://www.h-fj.com/blog/
+description: <__trans phrase="Create ePub document on Movable Type.">
+plugin_link: http://www.h-fj.com/blog/mt5plgdoc/mtepub.php
+doc_link: http://www.h-fj.com/blog/mt5plgdoc/mtepub.php
+version: 1.00
+l10n_class: MTePub::L10N
+schema_version: 1.00
+object_types:
+  blog:
+    fjep_cover_image: integer meta
+    fjep_title: string meta
+    fjep_author: string meta
+    fjep_publisher: string meta
+    fjep_copyright: string meta
+    fjep_use_category: boolean meta
+callbacks:
+  MT::App::CMS::template_param.footer: $MTePub::MTePub::Callback::footer
+  restore: $MTePub::MTePub::Callback::restore
+applications:
+  cms:
+    menus:
+      settings:epub:
+        label: EPUB
+        order: 700
+        mode: fjep_setting_epub
+        permission: administer_blog,edit_config
+        view: blog
+        condition: $MTePub::MTePub::Callback::can_menu
+    methods:
+      fjep_create_epub: $MTePub::MTePub::Create::create_epub
+      fjep_download_epub: $MTePub::MTePub::Create::download_epub
+      fjep_setting_epub: $MTePub::MTePub::Setting::setting_epub
+      fjep_save_setting: $MTePub::MTePub::Setting::save_setting
+      fjep_asset_cover: $MTePub::MTePub::Setting::asset_cover
+      fjep_upload_cover: $MTePub::MTePub::Setting::upload_cover
+tags:
+  block:
+    EPubCoverAsset: $MTePub::MTePub::ContextHandlers::epub_cover_asset
+    EPubIfUseCategory: $MTePub::MTePub::ContextHandlers::epub_use_category
+  function:
+    EPubTitleRaw: $MTePub::MTePub::ContextHandlers::epub_title_raw
+    EPubAuthorRaw: $MTePub::MTePub::ContextHandlers::epub_author_raw
+    EPubPublisherRaw: $MTePub::MTePub::ContextHandlers::epub_publisher_raw
+    EPubCopyrightRaw: $MTePub::MTePub::ContextHandlers::epub_copyright_raw
+    EPubID: $MTePub::MTePub::ContextHandlers::epub_id
+    EPubTitle: $MTePub::MTePub::ContextHandlers::epub_title
+    EPubAuthor: $MTePub::MTePub::ContextHandlers::epub_author
+    EPubPublisher: $MTePub::MTePub::ContextHandlers::epub_publisher
+    EPubCopyright: $MTePub::MTePub::ContextHandlers::epub_copyright

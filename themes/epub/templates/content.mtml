@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<title><$mt:EPUBTitle encode_html="1"$> - <__trans phrase="Table of contents"></title>
+<link href="<$mt:BlogURL$>styles.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h1 class="contents"><__trans phrase="Table of contents"></h1>
+<mt:EPubIfUseCategory>
+  <mt:TopLevelCategories>
+    <h2 class="contents-sub"><a href="<$mt:CategoryArchiveLink$>"><$mt:CategoryLabel$></a></h2>
+    <$mt:CategoryCount setvar="count"$>
+    <mt:Entries lastn="$count" sort_order="ascend" sort_by="authored_on">
+      <mt:EntriesHeader><ul class="contents-info"></mt:EntriesHeader>
+        <li><a href="<$mt:EntryPermalink$>"><$mt:EntryTitle$></a></li>
+      <mt:EntriesFooter></ul></mt:EntriesFooter>
+    </mt:Entries>
+  </mt:TopLevelCategories>
+<mt:Else>
+  <$mt:BlogEntryCount setvar="count"$>
+  <mt:Entries lastn="$count" sort_order="ascend" sort_by="authored_on">
+    <mt:EntriesHeader><ul class="contents-info"></mt:EntriesHeader>
+      <li><a href="<$mt:EntryPermalink$>"><$mt:EntryTitle$></a></li>
+    <mt:EntriesFooter></ul></mt:EntriesFooter>
+  </mt:Entries>
+</mt:EPubIfUseCategory>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package version="2.0" xmlns="http://www.idpf.org/2007/opf"
+         unique-identifier="BookId">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/"
+            xmlns:opf="http://www.idpf.org/2007/opf">
+    <dc:title><$mt:EPubTitle$></dc:title> 
+    <dc:creator opf:role="aut"><$mt:EPubAuthor$></dc:creator>
+    <dc:language>ja</dc:language> 
+    <dc:rights>Copyright(c) by <$mt:EPubCopyright$></dc:rights> 
+    <dc:publisher><$mt:EPubPublisher$></dc:publisher> 
+    <dc:identifier id="BookId"><$mt:EPubID$></dc:identifier>
+<mt:EPubCoverAsset>
+    <meta name="cover" content="asset<$mt:AssetID pad="1"$>" />
+</mt:EPubCoverAsset>
+  </metadata>
+  <manifest>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
+    <item id="styles" href="styles.css" media-type="text/css" />
+    <item id="index" href="index.html" media-type="application/xhtml+xml" />
+    <item id="content" href="content.html" media-type="application/xhtml+xml" />
+<$mt:SetVar name="items" value=""$>
+<mt:EPubIfUseCategory>
+  <mt:TopLevelCategories>
+    <item id="cat<$mt:CategoryID sprintf="%06d"$>" href="<$mt:CategoryArchiveLink$>" media-type="application/xhtml+xml" />
+<mt:SetVarBlock name="items" append="1">    <itemref idref="cat<$mt:CategoryID sprintf="%06d"$>" />
+</mt:SetVarBlock>
+    <$mt:CategoryCount setvar="entry_count"$>
+    <mt:Entries lastn="$entry_count" sort_by="authored_on" sort_order="ascend">
+    <item id="item<$mt:EntryID pad="1"$>" href="<$mt:EntryPermalink$>" media-type="application/xhtml+xml" />
+<mt:SetVarBlock name="items" append="1">    <itemref idref="item<$mt:EntryID pad="1"$>" />
+</mt:SetVarBlock>
+    </mt:Entries>
+  </mt:TopLevelCategories>
+<mt:Else>
+  <$mt:BlogEntryCount setvar="count"$>
+  <mt:Entries lastn="$count" sort_by="authored_on" sort_order="ascend">
+    <item id="item<$mt:EntryID pad="1"$>" href="<$mt:EntryPermalink$>" media-type="application/xhtml+xml" />
+<mt:SetVarBlock name="items" append="1">    <itemref idref="item<$mt:EntryID pad="1"$>" />
+</mt:SetVarBlock>
+  </mt:Entries>
+</mt:EPubIfUseCategory>
+<$mt:AssetCount setvar="asset_count"$>
+<mt:Assets lastn="$asset_count">
+    <item id="asset<$mt:AssetID pad="1"$>" href="<$mt:AssetURL$>" media-type="<$mt:AssetMimeType$>" />
+</mt:Assets>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="index" />
+    <itemref idref="content" />
+<$mt:GetVar name="items"$>
+  </spine>
+</package>

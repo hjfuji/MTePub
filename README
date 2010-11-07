@@ -1,0 +1,9 @@
+Quick start for MTePub plugin
+
+1.Unzip MTePub plugin zip file.
+2.Upload 'plugins', 'mt-static', and 'themes' folder to directory of Movable Type 5 installed.
+3.Log in to Movable Type 5.
+4.Create new blog and apply 'EPUB' theme.
+5.Write entries.
+6.Rebuild blog.
+7.Click 'Create ePub' button on right-top corner of Movable Type admin screen.
